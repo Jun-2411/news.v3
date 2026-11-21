@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>美股快讯</title>
+<title>市场快讯</title>
 <style>
 :root{--bg:#f6f7f9;--card:#fff;--tx:#14181f;--mut:#6b7280;--bd:#e5e7eb;--up:#0a8f4d;--dn:#d92d20;--ac:#1f5eff;padding-top:env(safe-area-inset-top,0)}
 @media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--tx:#e8eaee;--mut:#8b93a1;--bd:#262c36;--up:#3ddc84;--dn:#ff6b61;--ac:#6b93ff}}
@@ -37,7 +37,7 @@ h1{font-size:20px;margin:0}
 </head>
 <body>
 <div class="wrap">
-<header><h1>📈 美股快讯</h1><span class="tag" id="upd"></span></header>
+<header><h1>📈 市场快讯</h1><span class="tag" id="upd"></span></header>
 <div class="idx" id="idx"></div>
 <div class="bar">
  <div class="tabs" id="tabs"></div>
@@ -47,7 +47,7 @@ h1{font-size:20px;margin:0}
 <p class="note">新闻与行情来自 Finnhub，可能有延迟。仅显示标题与摘要，点击跳转原文。不构成投资建议。</p>
 </div>
 <script>
-var CATS=[["general","要闻"],["merger","并购"],["crypto","加密"],["forex","外汇"]];
+var CATS=[["general","要闻"],["merger","并购"],["crypto","加密货币"],["forex","外汇"]];
 var cur={category:"general"},$=function(i){return document.getElementById(i)};
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function ago(t){var s=Date.now()/1000-t;if(s<3600)return Math.max(1,Math.floor(s/60))+" 分钟前";if(s<86400)return Math.floor(s/3600)+" 小时前";return Math.floor(s/86400)+" 天前"}
@@ -61,7 +61,7 @@ async function loadNews(){
   $("list").innerHTML=a.length?a.map(function(n){
    var tk=(n.related||"").split(",").filter(Boolean).slice(0,3).map(function(t){return '<span class="s">'+esc(t)+"</span>"}).join("");
    return '<a class="n" target="_blank" rel="noopener noreferrer" href="'+esc(n.url)+'"><h3>'+esc(n.headline)+"</h3>"+(n.summary?"<p>"+esc(n.summary)+"…</p>":"")+'<div class="m"><span>'+esc(n.source)+"</span><span>"+ago(n.time)+"</span>"+tk+"</div></a>"}).join(""):'<div class="msg">暂无相关新闻</div>';
-  $("upd").textContent="更新于 "+new Date().toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"});
+  $("upd").textContent="Updates "+new Date().toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"});
  }catch(e){$("list").innerHTML='<div class="msg">加载失败：'+esc(e.message)+"</div>"}
 }
 async function loadQuotes(){
