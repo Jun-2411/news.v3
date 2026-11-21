@@ -4,7 +4,7 @@ const LIST = [
   ["QQQ", "纳斯达克 100"],
   ["DIA", "道琼斯"],
   ["IWM", "罗素 2000"],
-  ["VIX", "VIX 波动率"]
+  ["VIXY", "VIX 波动率"]
 ];
 
 module.exports = async (req, res) => {
